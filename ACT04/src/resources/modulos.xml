@@ -1,0 +1,14 @@
+<modulos>
+	<modulo>
+		<id>1</id>
+		<nombre>M01</nombre>
+	</modulo>
+	<modulo>
+		<id>2</id>
+		<nombre>M02</nombre>
+	</modulo>
+	<modulo>
+		<id>3</id>
+		<nombre>M03</nombre>
+	</modulo>
+</modulos>

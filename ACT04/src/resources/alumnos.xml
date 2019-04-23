@@ -1,0 +1,42 @@
+<alumnos>
+	<alumno>
+		<id>1</id>
+		<nombre>Steve Rogers</nombre>
+		<nom_user>capitan</nom_user>
+		<password>Password1234</password>
+		<nota>9.00</nota>
+		<modulo>1</modulo>
+	</alumno>
+	<alumno>
+		<id>2</id>
+		<nombre>Bruce Banner</nombre>
+		<nom_user>hulk</nom_user>
+		<password>Password1234</password>
+		<nota>10.00</nota>
+		<modulo>1</modulo>
+	</alumno>
+	<alumno>
+		<id>3</id>
+		<nombre>Steve Rogers</nombre>
+		<nom_user>capitan</nom_user>
+		<password>Password1234</password>
+		<nota>7.50</nota>
+		<modulo>2</modulo>
+	</alumno>
+	<alumno>
+		<id>4</id>
+		<nombre>Steve Rogers</nombre>
+		<nom_user>capitan</nom_user>
+		<password>Password1234</password>
+		<nota>4.00</nota>
+		<modulo>3</modulo>
+	</alumno>
+	<alumno>
+		<id>5</id>
+		<nombre>Tony Stark</nombre>
+		<nom_user>ironman</nom_user>
+		<password>Password1234</password>
+		<nota>9.75</nota>
+		<modulo>2</modulo>
+	</alumno>
+</alumnos>

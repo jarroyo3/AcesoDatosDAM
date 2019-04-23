@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/exist.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/antlr-2.7.7.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/caffeine-2.6.1.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/cglib-nodep-3.1.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/clj-ds-0.0.4.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/commons-codec-1.11.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/commons-collections-3.2.2.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/commons-configuration2-2.2.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/commons-io-2.6.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/commons-pool-1.6.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/examples.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/exist-optional.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/gnu-crypto-2.0.1.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/icu4j-60.2.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/icu4j-localespi-60.2.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/j8fu-1.12.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/jackson-core-2.9.3.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/jargo-0.4.2-SNAPSHOT-7fa1d04.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/jcip-annotations-1.0.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/jctools-core-2.1.1.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/jline-0.9.94.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/jsr305-3.0.2.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/log4j-api-2.10.0.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/log4j-core-2.10.0.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/log4j-jul-2.10.0.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/log4j-slf4j-impl-2.10.0.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/pkg-java-fork.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/quartz-2.3.0.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/rsyntaxtextarea-2.6.1.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/start.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/uninstall.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/ws-commons-util-1.0.2.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/xmldb.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/xmlrpc-client-3.1.3.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/xmlrpc-common-3.1.3.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM-M06-Clase09/Librerias eXist/xmlrpc-server-3.1.3.jar"/>
+	<classpathentry kind="lib" path="/home/jorge/Escritorio/DAM_M06_ACT_04/ACT04/apache-log4j-1.2.17/log4j-1.2.17.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,14 @@
+<profesores>
+	<profesor>
+		<id>1</id>
+		<nombre>Nick Furia</nombre>
+		<nom_user>furia</nom_user>
+		<password>Password1234</password>
+	</profesor>
+	<profesor>
+		<id>2</id>
+		<nombre>Maria Hill</nombre>
+		<nom_user>maria</nom_user>
+		<password>Password9876</password>
+	</profesor>
+</profesores>

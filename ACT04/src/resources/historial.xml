@@ -1,0 +1,32 @@
+<historial>
+	<evento>
+		<id>1</id>
+		<tipo>P</tipo>
+		<user>furia</user>
+		<detalle>Inicio de sesion Nick Furia 09-09-2009</detalle>
+	</evento>
+	<evento>
+		<id>2</id>
+		<tipo>A</tipo>
+		<user>capitan</user>
+		<detalle>Inicio de sesiñon Steve Rogers 09-09-2009</detalle>
+	</evento>
+	<evento>
+		<id>3</id>
+		<tipo>P</tipo>
+		<user>maria</user>
+		<detalle>Inicio de sesion Maria Hill 10-09-2009</detalle>
+	</evento>
+	<evento>
+		<id>4</id>
+		<tipo>N</tipo>
+		<user>furia</user>
+		<detalle>Nota M01 Steve Rogers 9.00</detalle>
+	</evento>
+	<evento>
+		<id>6</id>
+		<tipo>N</tipo>
+		<user>furia</user>
+		<detalle>Nota M03 Steve Rogers 7.50</detalle>
+	</evento>
+</historial>
