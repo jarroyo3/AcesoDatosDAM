@@ -31,7 +31,7 @@ public class DatabaseCore {
 	private Collection collection;
 	private String resourceName;
 
-	public DatabaseCore() {
+	private DatabaseCore() {
 		this.collectionName = "";
 		this.collection = null;
 		this.resourceName = "";
