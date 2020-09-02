@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+// TODO refactor this class
 public class Database {
 
 	private static Database self;
@@ -33,7 +34,7 @@ public class Database {
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			conexion = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/practica2?useSSL=false&useUnicode=true&characterEncoding=UTF-8&user=root&password=root");
+					"jdbc:mysql://192.168.1.50:3307/acceso_datos_dam_practica2?useSSL=false&useUnicode=true&characterEncoding=UTF-8&user=dam&password=dam");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -86,6 +87,10 @@ public class Database {
 		try {
 			Statement st = conexion.createStatement();
 			id = st.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+			ResultSet rs = st.getGeneratedKeys();
+			if (rs != null && rs.next()) {
+				id = rs.getInt(1);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

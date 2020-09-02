@@ -5,25 +5,31 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import alumno.Alumno;
 import db.Database;
-import models.Alumno;
-import models.Modulo;
+import modulo.Modulo;
 
 public class AlumnoRepository {
 
 	public Alumno save(Alumno alumno) {
-		String query = String.format(
-				"INSERT INTO alumnos (nombre, nom_user, password) VALUES ('%s','%s','%s')",
+		String query = String.format("INSERT INTO alumnos (nombre, nom_user, password) VALUES ('%s','%s','%s')",
 				alumno.getNombre(), alumno.getNomUser(), alumno.getPassword());
 		int id = Database.getInstance().insert(query);
 		if (id != 0) {
-			alumno.setId(new Long(id));
+			alumno.setId(Long.valueOf(id));
+			alumno.setCreated(true);
 		}
 		return alumno;
 	}
 
-	public void deleteById(int id) {
-		Database.getInstance().delete("DELETE FROM alumnos WHERE id = " + id);
+	public Alumno deleteById(int id) {
+		Alumno alumno = findById(Long.valueOf(id));
+		if (alumno != null) {
+			Database.getInstance().delete("DELETE FROM alumnos WHERE id = " + id);
+			alumno.setDeleted(true);
+			return alumno;
+		}
+		return null;
 	}
 
 	public boolean existe(String username, String pass) {
@@ -48,12 +54,11 @@ public class AlumnoRepository {
 		try {
 			while (result.next()) {
 				Alumno alumno = convertirAlumnos(result);
-				String queryModulos = String.format("SELECT m.id, m.nombre " + 
-						"FROM modulos m, alumno_modulos ma " + 
-						"WHERE m.id =ma.id_modulo AND ma.id_alumno = %s", alumno.getId());
-				
+				String queryModulos = String.format("SELECT m.id, m.nombre " + "FROM modulos m, alumno_modulos ma "
+						+ "WHERE m.id =ma.id_modulo AND ma.id_alumno = %s", alumno.getId());
+
 				ResultSet resultModulos = Database.getInstance().executeS(queryModulos);
-				
+
 				List<Modulo> modulos = new ArrayList<>();
 				while (resultModulos.next()) {
 					Long idModulo = resultModulos.getLong("id");
@@ -61,7 +66,7 @@ public class AlumnoRepository {
 					Modulo modulo = new Modulo(idModulo, nombreModulo);
 					modulos.add(modulo);
 				}
-				
+
 				alumno.setModulos(modulos);
 				alumnos.add(alumno);
 			}
@@ -70,14 +75,14 @@ public class AlumnoRepository {
 		}
 		return alumnos;
 	}
-	
+
 	public Alumno findById(Long id) {
 		Alumno alumno = null;
-		
+
 		String query = "SELECT * from alumnos WHERE id = " + id;
 		ResultSet result = Database.getInstance().executeS(query);
 		alumno = buscaAlumno(result);
-		
+
 		return alumno;
 	}
 
@@ -86,12 +91,11 @@ public class AlumnoRepository {
 		try {
 			while (result.next()) {
 				alumno = convertirAlumnos(result);
-				String queryModulos = String.format("SELECT m.id, m.nombre " + 
-						"FROM modulos m, alumno_modulos ma " + 
-						"WHERE m.id =ma.id_modulo AND ma.id_alumno = %s", alumno.getId());
-				
+				String queryModulos = String.format("SELECT m.id, m.nombre " + "FROM modulos m, alumno_modulos ma "
+						+ "WHERE m.id =ma.id_modulo AND ma.id_alumno = %s", alumno.getId());
+
 				ResultSet resultModulos = Database.getInstance().executeS(queryModulos);
-				
+
 				List<Modulo> modulos = new ArrayList<>();
 				while (resultModulos.next()) {
 					Long idModulo = resultModulos.getLong("id");
@@ -99,7 +103,7 @@ public class AlumnoRepository {
 					Modulo modulo = new Modulo(idModulo, nombreModulo);
 					modulos.add(modulo);
 				}
-				
+
 				alumno.setModulos(modulos);
 			}
 		} catch (SQLException e) {
@@ -112,28 +116,27 @@ public class AlumnoRepository {
 		Long idAlumno = result.getLong("id");
 		String nombreAlumno = result.getString("nombre");
 		String usernameAlumno = result.getString("nom_user");
-		
+
 		Alumno alumno = new Alumno(idAlumno, nombreAlumno, usernameAlumno, null, null);
 		return alumno;
 	}
 
 	public Alumno findByUsername(String nombreUsuario) {
 		Alumno alumno = null;
-		
+
 		String query = String.format("SELECT * from alumnos WHERE nom_user = '%s'", nombreUsuario);
 		ResultSet result = Database.getInstance().executeS(query);
 		alumno = buscaAlumno(result);
-		
+
 		return alumno;
 	}
-	
+
 	public List<String> findNotasByIdAlumno(Long idAlumno) {
-		String queryModulos = String.format("SELECT ma.nota, m.nombre " + 
-				"FROM modulos m, alumno_modulos ma " + 
-				"WHERE m.id =ma.id_modulo AND ma.id_alumno = %s", idAlumno);
-		
+		String queryModulos = String.format("SELECT ma.nota, m.nombre " + "FROM modulos m, alumno_modulos ma "
+				+ "WHERE m.id =ma.id_modulo AND ma.id_alumno = %s", idAlumno);
+
 		ResultSet resultNotas = Database.getInstance().executeS(queryModulos);
-		
+
 		List<String> notas = new ArrayList<>();
 		try {
 			while (resultNotas.next()) {

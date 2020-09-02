@@ -3,24 +3,34 @@ package DAO;
 import java.util.HashMap;
 import java.util.List;
 
-import models.Modulo;
+import modulo.Modulo;
 import repository.ModuloRepository;
 
 public class ModuloDAO {
 
 	private ModuloRepository moduloRepo;
 
-	public ModuloDAO() {
+	private static ModuloDAO instance;
+
+	private ModuloDAO() {
 		this.moduloRepo = new ModuloRepository();
 	}
-	
+
+	public static ModuloDAO instance() {
+		if (null == instance) {
+			instance = new ModuloDAO();
+		}
+
+		return instance;
+	}
+
 	public Modulo save(Modulo modulo) {
 		return moduloRepo.save(modulo);
 	}
 
-	public void deleteById(int id) {
-		moduloRepo.deleteById(id);
-		
+	public Modulo deleteById(int id) {
+		return moduloRepo.deleteById(id);
+
 	}
 
 	public boolean existe(String nombre) {
@@ -33,9 +43,9 @@ public class ModuloDAO {
 
 	public void deleteByNombre(String nombre) {
 		moduloRepo.deleteByNombre(nombre);
-		
+
 	}
-	
+
 	public HashMap<String, List<String>> listarAlumnoPorModulo() {
 		return moduloRepo.listarAlumnosPorModulo();
 	}

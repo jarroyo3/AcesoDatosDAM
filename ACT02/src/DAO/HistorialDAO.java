@@ -1,17 +1,33 @@
 package DAO;
 
-import models.Historial;
-import repository.HistorialRepo;
+import java.util.List;
+
+import historial.Historial;
+import repository.HistorialRepository;
 
 public class HistorialDAO {
 
-	private HistorialRepo historialRepo;
+	private HistorialRepository historialRepo;
 
-	public HistorialDAO() {
-		this.historialRepo = new HistorialRepo();
+	private static HistorialDAO instance;
+
+	private HistorialDAO() {
+		this.historialRepo = new HistorialRepository();
 	}
-	
+
+	public static HistorialDAO instance() {
+		if (null == instance) {
+			instance = new HistorialDAO();
+		}
+
+		return instance;
+	}
+
 	public Historial save(Historial historial) {
 		return historialRepo.save(historial);
+	}
+
+	public List<Historial> findAll() {
+		return historialRepo.findAll();
 	}
 }

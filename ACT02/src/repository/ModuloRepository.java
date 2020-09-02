@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import db.Database;
-import models.Modulo;
+import modulo.Modulo;
 
 public class ModuloRepository {
 
@@ -16,13 +16,17 @@ public class ModuloRepository {
 				modulo.getNombre());
 		int id = Database.getInstance().insert(query);
 		if (id != 0) {
-			modulo.setId(new Long(id));
+			modulo.setId(Long.valueOf(id));
+			modulo.setCreated(true);
 		}
 		return modulo;
 	}
 
-	public void deleteById(int id) {
+	public Modulo deleteById(int id) {
 		Database.getInstance().delete("DELETE FROM modulos WHERE id = " + id);
+		Modulo m = new Modulo(Long.valueOf(id), null);
+		m.setDeleted(true);
+		return m;
 	}
 
 	public boolean existe(String username) {
@@ -65,20 +69,17 @@ public class ModuloRepository {
 	public void deleteByNombre(String nombre) {
 		Database.getInstance().delete(String.format("DELETE FROM modulos WHERE nombre = '%s'", nombre));
 	}
-	
+
 	public HashMap<String, List<String>> listarAlumnosPorModulo() {
 		HashMap<String, List<String>> alumnosModulo = new HashMap<>();
-		String query = "SELECT a.nombre as 'nombre_alumno', m.nombre as 'nombre_modulo'" + 
-				"FROM alumnos a " + 
-				"LEFT JOIN alumno_modulos am " + 
-				"ON a.id = am.id_alumno " + 
-				"LEFT JOIN modulos m " + 
-				"ON m.id = am.id_modulo";
-		
+		String query = "SELECT a.nombre as 'nombre_alumno', m.nombre as 'nombre_modulo'" + "FROM alumnos a "
+				+ "LEFT JOIN alumno_modulos am " + "ON a.id = am.id_alumno " + "LEFT JOIN modulos m "
+				+ "ON m.id = am.id_modulo";
+
 		ResultSet result = Database.getInstance().executeS(query);
 		try {
 			while (result.next()) {
-		
+
 				String modulo = result.getString("nombre_modulo");
 				String alumno = result.getString("nombre_alumno");
 				if (alumnosModulo.containsKey(modulo)) {
@@ -88,13 +89,13 @@ public class ModuloRepository {
 					listaAlumno.add(alumno);
 					alumnosModulo.put(modulo, listaAlumno);
 				}
-				
+
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return alumnosModulo;
 	}
 }
