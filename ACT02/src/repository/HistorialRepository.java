@@ -5,17 +5,34 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import db.DB;
 import db.Database;
+import db.DatabaseFactory;
 import historial.Historial;
 
 public class HistorialRepository {
 
+	private static HistorialRepository instance;
+	private DB database;
+
+	private HistorialRepository() {
+		database = DatabaseFactory.instance().getDatabase();
+	}
+	
+	public static HistorialRepository instance() {
+		if (null == instance) {
+			instance = new HistorialRepository();
+		}
+		
+		return instance;
+	}
+	
 	public Historial save(Historial historial) {
-		String query = String.format("INSERT INTO historial (tipo, user, detalle) VALUES ('%s','%s','%s')",
-				historial.getTipo(), historial.getIdUsuario(), historial.getDetalle());
-		int id = Database.getInstance().insert(query);
-		if (id != 0) {
-			historial.setId(Long.valueOf(id));
+		try {
+			database.insert(historial);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+			historial = null;
 		}
 		return historial;
 	}

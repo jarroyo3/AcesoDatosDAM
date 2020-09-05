@@ -11,7 +11,7 @@ public class AlumnoDAO {
 	private AlumnoRepository alumnoRepo;
 
 	private AlumnoDAO() {
-		this.alumnoRepo = new AlumnoRepository();
+		this.alumnoRepo = AlumnoRepository.instance();
 	}
 
 	public Alumno save(Alumno alumno) {

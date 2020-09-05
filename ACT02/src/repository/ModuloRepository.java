@@ -6,20 +6,37 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import db.DB;
 import db.Database;
+import db.DatabaseFactory;
 import modulo.Modulo;
 
 public class ModuloRepository {
 
+	private static ModuloRepository instance;
+	private DB database;
+
+	private ModuloRepository() {
+		database = DatabaseFactory.instance().getDatabase();
+	}
+
+	public static ModuloRepository instance() {
+		if (null == instance) {
+			instance = new ModuloRepository();
+		}
+
+		return instance;
+	}
+
 	public Modulo save(Modulo modulo) {
-		String query = String.format("INSERT INTO modulos (nombre) VALUES ('%s')", modulo.getNombre(),
-				modulo.getNombre());
-		int id = Database.getInstance().insert(query);
-		if (id != 0) {
-			modulo.setId(Long.valueOf(id));
-			modulo.setCreated(true);
+		try {
+			database.insert(modulo);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+			modulo = null;
 		}
 		return modulo;
+
 	}
 
 	public Modulo deleteById(int id) {

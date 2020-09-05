@@ -3,14 +3,18 @@ package repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import db.DB;
 import db.Database;
+import db.DatabaseFactory;
 import profesor.Profesor;
 
 public class ProfesorRepository {
 
 	private static ProfesorRepository instance;
+	private DB database;
 
 	private ProfesorRepository() {
+		database = DatabaseFactory.instance().getDatabase();
 	}
 
 	public static ProfesorRepository instance() {
@@ -22,12 +26,11 @@ public class ProfesorRepository {
 	}
 
 	public Profesor save(Profesor profesor) {
-		String query = String.format("INSERT INTO profesores (nombre, nom_user, password) VALUES ('%s','%s','%s')",
-				profesor.getNombre(), profesor.getNomUser(), profesor.getPassword());
-		int id = Database.getInstance().insert(query);
-		if (id != 0) {
-			profesor.setId(Long.valueOf(id));
-			profesor.setCreated(true);
+		try {
+			database.insert(profesor);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+			profesor = null;
 		}
 		return profesor;
 	}
@@ -35,11 +38,13 @@ public class ProfesorRepository {
 	public Profesor deleteById(int id) {
 		Profesor p = findById(id);
 		if (p != null) {
-			Database.getInstance().delete("DELETE FROM profesores WHERE id = " + id);
-			p.setDeleted(true);
-			return p;
+			try {
+				database.delete(p);
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+			}
 		}
-		return null;
+		return p;
 	}
 
 	public boolean existe(String username, String pass) {

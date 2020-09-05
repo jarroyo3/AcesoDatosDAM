@@ -1,7 +1,9 @@
 package alumno;
 
+import java.sql.SQLException;
 import java.util.List;
 
+import db.DatabaseVisitor;
 import escuela.EscuelaVisitor;
 import modulo.Modulo;
 import sistemaescolar.SistemaEscolar;
@@ -72,6 +74,18 @@ public class Alumno extends SistemaEscolar {
 
 	public void accept(EscuelaVisitor escuelaVisitor) {
 		escuelaVisitor.visit(this);
+	}
 
+	public void insert(DatabaseVisitor databaseVisitor) throws ClassNotFoundException, SQLException {
+		databaseVisitor.insert(this);
+	}
+
+	public void delete(DatabaseVisitor databaseVisitor) throws ClassNotFoundException, SQLException {
+		databaseVisitor.delete(this);
+	}
+
+	public void update(DatabaseVisitor databaseVisitor) {
+		databaseVisitor.update(this);
+		
 	}
 }

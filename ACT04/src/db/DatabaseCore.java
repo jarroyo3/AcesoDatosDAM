@@ -1,16 +1,13 @@
 package db;
 
-import java.io.File;
 import java.sql.ResultSet;
 
 import javax.xml.transform.OutputKeys;
 
-import org.exist.util.UTF8;
 import org.xmldb.api.DatabaseManager;
 import org.xmldb.api.base.Collection;
 import org.xmldb.api.base.CompiledExpression;
 import org.xmldb.api.base.Database;
-import org.xmldb.api.base.Resource;
 import org.xmldb.api.base.ResourceIterator;
 import org.xmldb.api.base.ResourceSet;
 import org.xmldb.api.base.XMLDBException;
@@ -25,7 +22,7 @@ public class DatabaseCore {
 	private static final String DRIVER = "org.exist.xmldb.DatabaseImpl";
 	private static final String URI_CONEXION = "xmldb:exist://localhost:8080/exist/xmlrpc/db/apps/act04";
 	private static final String USERNAME = "admin";
-	private static final String PASSWORD = "123";
+	private static final String PASSWORD = "admin";
 
 	private String collectionName;
 	private Collection collection;
@@ -73,6 +70,7 @@ public class DatabaseCore {
 			this.collection = DatabaseManager.getCollection(URI_CONEXION + resourceName, USERNAME, PASSWORD);
 
 			if (null == collection || collection.getResourceCount() == 0) {
+				
 				throw new Exception(String.format("La colección [%s] no tiene recursos [%s].",
 						getOrCreateCollection(this.collectionName), URI_CONEXION + resourceName));
 			}
@@ -110,7 +108,7 @@ public class DatabaseCore {
 		try {
 			CollectionManagementService mgtService = (CollectionManagementService) collection
 					.getService("CollectionManagementService", "1.0");
-			newCol = mgtService.createCollection(new String(UTF8.encode(newCollection)));
+			newCol = mgtService.createCollection(new String(newCollection));
 		} catch (XMLDBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

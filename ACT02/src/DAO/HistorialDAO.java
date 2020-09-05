@@ -12,7 +12,7 @@ public class HistorialDAO {
 	private static HistorialDAO instance;
 
 	private HistorialDAO() {
-		this.historialRepo = new HistorialRepository();
+		this.historialRepo = HistorialRepository.instance();
 	}
 
 	public static HistorialDAO instance() {

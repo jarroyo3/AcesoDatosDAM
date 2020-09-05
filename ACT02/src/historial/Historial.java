@@ -1,5 +1,8 @@
 package historial;
 
+import java.sql.SQLException;
+
+import db.DatabaseVisitor;
 import escuela.EscuelaVisitor;
 
 public class Historial {
@@ -57,8 +60,21 @@ public class Historial {
 
 	}
 
+	public void insert(DatabaseVisitor databaseVisitor) throws ClassNotFoundException, SQLException {
+		databaseVisitor.insert(this);
+	}
+	
+	public void delete(DatabaseVisitor databaseVisitor) throws ClassNotFoundException, SQLException {
+		databaseVisitor.delete(this);
+	}
+
 	@Override
 	public String toString() {
 		return "Historial [tipo=" + tipo + ", idUsuario=" + idUsuario + ", detalle=" + detalle + "]";
+	}
+
+	public void update(DatabaseVisitor databaseVisitor) throws ClassNotFoundException, SQLException {
+		databaseVisitor.update(this);
+		
 	}
 }

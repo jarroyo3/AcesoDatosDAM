@@ -9,25 +9,19 @@ import java.sql.Statement;
 // TODO refactor this class
 public class Database {
 
-	private static Database self;
-	private static Connection conexion;
-
+	protected static Connection conexion;
+	
+	private static Database instance;
+	
 	private Database() {
-		connect();
+		this.connect();
 	}
-
+	
 	public static Database getInstance() {
-		if (null == self) {
-			self = new Database();
+		if (null == instance) {
+			instance = new Database();
 		}
-
-		return self;
-	}
-
-	@Override
-	protected void finalize() throws Throwable {
-		disconnect();
-		super.finalize();
+		return instance;
 	}
 
 	public void connect() {
@@ -38,18 +32,6 @@ public class Database {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	public void disconnect() {
-		try {
-			if (null != conexion) {
-				conexion.close();
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 	}
 
 	public ResultSet executeS(String queryS) {

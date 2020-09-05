@@ -13,7 +13,7 @@ public class ModuloDAO {
 	private static ModuloDAO instance;
 
 	private ModuloDAO() {
-		this.moduloRepo = new ModuloRepository();
+		this.moduloRepo = ModuloRepository.instance();
 	}
 
 	public static ModuloDAO instance() {

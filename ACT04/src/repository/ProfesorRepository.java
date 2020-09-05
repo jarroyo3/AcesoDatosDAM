@@ -87,7 +87,7 @@ public class ProfesorRepository {
 				Node node = resource.getContentAsDOM();
 				NodeList nodeList = node.getFirstChild().getChildNodes();
 
-				Long id = new Long(nodeList.item(0).getNextSibling().getTextContent());
+				Long id = Long.valueOf(nodeList.item(0).getNextSibling().getTextContent());
 				String nombre = nodeList.item(2).getNextSibling().getTextContent();
 				String username = nodeList.item(4).getNextSibling().getTextContent();
 				String pass = nodeList.item(6).getNextSibling().getTextContent();

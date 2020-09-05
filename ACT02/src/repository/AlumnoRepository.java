@@ -6,18 +6,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import alumno.Alumno;
+import db.DB;
 import db.Database;
+import db.DatabaseFactory;
 import modulo.Modulo;
 
 public class AlumnoRepository {
 
+	private static AlumnoRepository instance;
+
+	private DB database;
+
+	private AlumnoRepository() {
+		this.database = DatabaseFactory.instance().getDatabase();
+	}
+
 	public Alumno save(Alumno alumno) {
-		String query = String.format("INSERT INTO alumnos (nombre, nom_user, password) VALUES ('%s','%s','%s')",
-				alumno.getNombre(), alumno.getNomUser(), alumno.getPassword());
-		int id = Database.getInstance().insert(query);
-		if (id != 0) {
-			alumno.setId(Long.valueOf(id));
-			alumno.setCreated(true);
+
+		try {
+			database.insert(alumno);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+			alumno = null;
 		}
 		return alumno;
 	}
@@ -150,5 +160,13 @@ public class AlumnoRepository {
 			e.printStackTrace();
 		}
 		return notas;
+	}
+
+	public static AlumnoRepository instance() {
+		if (instance == null) {
+			instance = new AlumnoRepository();
+		}
+
+		return instance;
 	}
 }
